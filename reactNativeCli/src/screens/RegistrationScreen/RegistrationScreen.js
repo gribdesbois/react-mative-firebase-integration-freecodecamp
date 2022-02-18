@@ -23,7 +23,10 @@ const RegistrationScreen = ({ navigation }) => {
       return
     }
     try {
-      const response = auth().createUserWithEmailAndPassword(email, password)
+      const response = await auth().createUserWithEmailAndPassword(
+        email,
+        password,
+      )
       const { uid } = response.user
       const data = {
         id: uid,
