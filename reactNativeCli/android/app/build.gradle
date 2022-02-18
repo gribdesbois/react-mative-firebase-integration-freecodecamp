@@ -195,6 +195,7 @@ dependencies {
 // Import the Firebase BoM
 
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
+    implementation 'com.google.firebase:firebase-auth'
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
