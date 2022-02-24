@@ -1,20 +1,23 @@
 import React, { useState } from 'react'
+import firebase from 'firebase/compat/app' //v8 compat import
+import 'firebase/compat/auth' //v8 compat import
+/* const auth = firebase.auth() */
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 import styles from './styles'
-import auth from '@react-native-firebase/auth'
-import { collection } from '@react-native-firebase/firestore'
+import auth from '@react-native-firebase/auth' /*
+import { collection } from '@react-native-firebase/firestore' */
 import { useNavigation } from '@react-navigation/native'
 
-const RegistrationScreen = ({ navigation }) => {
+const RegistrationScreen = (/* { navigation } */) => {
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const navigate = useNavigation()
+  const navigation = useNavigation()
 
   const onFooterLinkPress = () => {
-    navigate('Login')
+    navigation.navigate('Login')
   }
 
   const onRegisterPress = async () => {
@@ -33,7 +36,7 @@ const RegistrationScreen = ({ navigation }) => {
         email,
         fullName,
       }
-      const usersRef = collection('users')
+      const usersRef = firebase.firestore().collection('users')
       try {
         await usersRef.doc(uid).set(data)
         navigate('Home', { user: data })
